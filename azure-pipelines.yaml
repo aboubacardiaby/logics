@@ -18,9 +18,9 @@ stages:
   jobs:
   - job: BuildAndTest
     pool:
-      name: Default
+      name: wireworker1
       demands:
-      - agent.name -equals abou-OptiPlex-3020
+      - agent.name -equals wireworker1
     steps:
 
     # Create or update the ACR resource
@@ -107,9 +107,9 @@ stages:
   jobs:
   - job: Release
     pool:
-      name: Default
+      name: wireworker1
       demands:
-      - agent.name -equals abou-OptiPlex-3020
+      - agent.name -equals wireworker1
     steps:
     # Don't clone the repo
     - checkout: none
