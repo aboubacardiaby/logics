@@ -72,11 +72,8 @@ stages:
         arguments: '--configuration $(BuildConfiguration) --output $(System.DefaultWorkingDirectory)/PublishedWebApp'
         zipAfterPublish: false
 
-    # Build container image
     - task: Docker@2
       inputs:
-        containerRegistry: '$(acrHostName)'
-        repository:  '$(imageName):$(Build.BuildId)'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
 
