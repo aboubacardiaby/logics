@@ -73,24 +73,12 @@ stages:
         zipAfterPublish: false
 
     # Build container image
-    - task: Docker@1
-      displayName: 'Build container image'
+    - task: Docker@2
       inputs:
-        azureSubscriptionEndpoint: 'AzureSC'
-        azureContainerRegistry: '$(acrHostName)'
-        imageName: '$(imageName):$(Build.BuildId)'
+        containerRegistry: '$(acrHostName)'
+        repository:  '$(imageName):$(Build.BuildId)'
+        command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
-        useDefaultContext: false
-        buildContext: '$(System.DefaultWorkingDirectory)/PublishedWebApp'
-
-    # Push container image
-    - task: Docker@1
-      displayName: 'Push container image'
-      inputs:
-        azureSubscriptionEndpoint: 'AzureSC'
-        azureContainerRegistry: '$(acrHostName)'
-        command: 'Push an image'
-        imageName: '$(imageName):$(Build.BuildId)'
 
     # Copy ARM templates
     - task: CopyFiles@2
