@@ -79,6 +79,7 @@ stages:
         azureSubscriptionEndpoint: 'AzureSC'
         azureContainerRegistry: '$(acrHostName)'
         imageName: '$(imageName):$(Build.BuildId)'
+        Dockerfile: '**/Dockerfile'
         useDefaultContext: false
         buildContext: '$(System.DefaultWorkingDirectory)/PublishedWebApp'
 
