@@ -125,16 +125,11 @@ stages:
         overrideParameters: '-webAppName $(webAppName) -hostingPlanName $(webAppName) -appInsightsLocation "$(location)" -sku "S1 Standard" -registryName $(acrName) -registryLocation "$(location)" -registrySku standard -imageName $(imageName):$(Build.BuildId)'
 
     # Deploy App Service
-    - task: AzureRmWebAppDeployment@3
-      displayName: 'Deploy Azure App Service'
+    - task: AzureRmWebAppDeployment@4
       inputs:
+        ConnectionType: 'AzureRM'
         azureSubscription: 'AzureSC'
-        appType: applinux
-        WebAppName: $(webAppName)
-        DockerNamespace: $(acrHostName)
-        DockerRepository: $(webAppName)
-        DockerImageTag: '$(Build.BuildId)'
-        WebAppUri: webAppUrl
-        TakeAppOfflineFlag: true
-        UseWebDeploy: true
-        RenameFilesFlag: true
+        appType: 'webAppLinux'
+        WebAppName: '$(webAppName)'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+
