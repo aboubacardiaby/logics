@@ -23,7 +23,7 @@ stages:
   jobs:
   - job: BuildAndTest
     pool:
-      name: prodmng
+      name: Default
       demands:
       - agent.name -equals prodmng
     steps:
