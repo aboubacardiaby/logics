@@ -103,7 +103,7 @@ stages:
   jobs:
   - job: Release
     pool:
-      name: wireservice
+      name: Default
       demands:
       - agent.name -equals wireservice
     steps:
