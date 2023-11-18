@@ -23,9 +23,9 @@ stages:
   jobs:
   - job: BuildAndTest
     pool:
-      name: wireservice
+      name: prodmng
       demands:
-      - agent.name -equals wireservice
+      - agent.name -equals prodmng
     steps:
 
     # Create or update the ACR resource
@@ -103,9 +103,9 @@ stages:
   jobs:
   - job: Release
     pool:
-      name: wireservice
+      name: prodmng
       demands:
-      - agent.name -equals wireservice
+      - agent.name -equals prodmng
     steps:
     # Don't clone the repo
     - checkout: none
