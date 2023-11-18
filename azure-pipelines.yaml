@@ -25,7 +25,7 @@ stages:
     pool:
       name: Default
       demands:
-      - agent.name -equals proddmng
+      - agent.name -equals wireservice
     steps:
 
     # Create or update the ACR resource
@@ -103,9 +103,9 @@ stages:
   jobs:
   - job: Release
     pool:
-      name: proddmng
+      name: wireservice
       demands:
-      - agent.name -equals proddmng
+      - agent.name -equals wireservice
     steps:
     # Don't clone the repo
     - checkout: none
